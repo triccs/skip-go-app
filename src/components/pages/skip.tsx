@@ -2,10 +2,7 @@ import { track } from "@amplitude/analytics-browser";
 import { Widget } from "@skip-go/widget";
 import { useState } from "react";
 
-import DiscordButton from "@/components/DiscordButton";
-import { LogoGo } from "@/components/LogoGo";
 import ShareButton from "@/components/ShareButton";
-import WidgetButton from "@/components/WidgetButton";
 // import { useFeatureEnabled } from "@/hooks/useFeatureEnabled";
 import { useTheme } from "@/hooks/useTheme";
 import { useURLQueryParams } from "@/hooks/useURLQueryParams";
@@ -13,7 +10,6 @@ import { apiURL, endpointOptions } from "@/lib/skip-go-widget";
 import { cn } from "@/utils/ui";
 
 import { Banner } from "../Banner";
-import { CosmosIcon } from "../CosmosIcon";
 
 export function SkipPage() {
   const defaultRoute = useURLQueryParams();
@@ -66,13 +62,8 @@ export function SkipPage() {
       )}
     >
       <main className="relative flex min-h-screen flex-col">
-        <div className="flex w-full flex-row justify-between p-6">
-          <LogoGo color={theme === "dark" ? "white" : "black"} />
-          <div className="flex flex-col items-end gap-[10px]">
-            <ShareButton onClick={onClickedShareButton} />
-            <WidgetButton />
-            <DiscordButton />
-          </div>
+        <div className="flex w-full flex-row justify-end p-4">
+          <ShareButton onClick={onClickedShareButton} />
         </div>
         <div className="flex flex-grow flex-col items-center justify-center">
           <div className="widget-container">
@@ -124,10 +115,9 @@ export function SkipPage() {
           </div>
         </div>
 
-        <div className="hidden w-full flex-row items-center justify-between px-8 py-6 md:flex">
-          <CosmosIcon color={theme === "dark" ? "white" : "black"} />
+        <div className="hidden w-full flex-row items-center justify-center px-8 py-6 md:flex">
           <p className={`text-center text-[13px] opacity-50 ${theme === "dark" ? "text-white" : "text-black"}`}>
-            <u>go.skip.build</u> {" is powered by Cosmos Hub, IBC Eureka & Skip:Go ❤️"}
+            Powered by Skip:Go
           </p>
         </div>
       </main>

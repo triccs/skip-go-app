@@ -1,20 +1,20 @@
 import { APP_DOMAIN, APP_PROTOCOL } from "./api";
 
 export const metadata = {
-  name: "Skip:Go - Anything Anywhere",
-  shortName: "Skip:Go",
-  description: "Everything you need to seamlessly connect your application, protocol, or ecosystem across chains.",
+  name: "Membrane Bridge",
+  shortName: "Membrane",
+  description: "Bridge assets to Osmosis via Membrane. Powered by Skip:Go.",
   domain: APP_DOMAIN,
-  email: "support@skip.build",
+  email: "",
   images: [{ url: `${APP_PROTOCOL}://${APP_DOMAIN}/social-thumbnail.png` }],
   url: `${APP_PROTOCOL}://${APP_DOMAIN}`,
   github: {
-    username: "skip-mev",
-    url: "https://github.com/skip-mev/skip-go-app",
+    username: "triccs",
+    url: "https://github.com/triccs/skip-go-app",
   },
   twitter: {
-    username: "@SkipProtocol",
-    url: "https://twitter.com/SkipProtocol",
+    username: "@insaborable_",
+    url: "https://twitter.com/insaborable_",
   },
-  themeColor: "##ff86ff",
+  themeColor: "#6943FF",
 };

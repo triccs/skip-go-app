@@ -1,6 +1,6 @@
 {
-  "name": "Skip Go",
-  "short_name": "Skip Go",
+  "name": "Membrane Bridge",
+  "short_name": "Membrane",
   "icons": [
     {
       "src": "/skip-web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#F6F",
-  "background_color": "#F6F",
+  "theme_color": "#6943FF",
+  "background_color": "#15171E",
   "display": "standalone"
 }

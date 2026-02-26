@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           name="apple-mobile-web-app-title"
-          content={"Skip Go"}
+          content={"Membrane Bridge"}
         />
         <link
           rel="manifest"
