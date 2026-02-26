@@ -76,7 +76,6 @@ export function SkipPage() {
               brandColor="#22d3ee"
               defaultRoute={defaultRoute}
               onlyTestnet={process.env.NEXT_PUBLIC_IS_TESTNET}
-              enableAmplitudeAnalytics
               disableShadowDom
               onRouteUpdated={onRouteUpdated}
               routeConfig={{
