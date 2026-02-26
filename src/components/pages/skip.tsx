@@ -74,6 +74,7 @@ export function SkipPage() {
             <Widget
               theme={theme}
               brandColor="#22d3ee"
+              apiUrl="https://api.skip.build"
               defaultRoute={defaultRoute}
               onlyTestnet={process.env.NEXT_PUBLIC_IS_TESTNET}
               disableShadowDom
