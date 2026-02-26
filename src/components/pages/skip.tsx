@@ -15,8 +15,6 @@ export function SkipPage() {
   const defaultRoute = urlRoute ?? {
     destChainId: "osmosis-1",
     destAssetDenom: "ibc/498A0751C798A0D9A389AA3691123DADA57DAA4FE165D5C75894505B876BA6E4",
-    srcChainId: "noble-1",
-    srcAssetDenom: "uusdc",
   };
   const theme = useTheme();
   const [queryParamsString, setQueryParamsString] = useState<string>();
