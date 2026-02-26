@@ -67,8 +67,14 @@ export function SkipPage() {
         </div>
         <div className="flex flex-grow flex-col items-center justify-center">
           <div className="widget-container">
+            <img
+              src="/membrane-logo.svg"
+              alt="Membrane"
+              className="mx-auto mb-4 h-[36px]"
+            />
             <Widget
               theme={theme}
+              brandColor="#22d3ee"
               endpointOptions={endpointOptions}
               apiUrl={apiURL}
               defaultRoute={defaultRoute}
