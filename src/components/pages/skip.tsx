@@ -6,7 +6,6 @@ import ShareButton from "@/components/ShareButton";
 // import { useFeatureEnabled } from "@/hooks/useFeatureEnabled";
 import { useTheme } from "@/hooks/useTheme";
 import { useURLQueryParams } from "@/hooks/useURLQueryParams";
-import { apiURL, endpointOptions } from "@/lib/skip-go-widget";
 import { cn } from "@/utils/ui";
 
 import { Banner } from "../Banner";
@@ -75,8 +74,6 @@ export function SkipPage() {
             <Widget
               theme={theme}
               brandColor="#22d3ee"
-              endpointOptions={endpointOptions}
-              apiUrl={apiURL}
               defaultRoute={defaultRoute}
               onlyTestnet={process.env.NEXT_PUBLIC_IS_TESTNET}
               enableAmplitudeAnalytics
