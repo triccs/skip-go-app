@@ -139,105 +139,110 @@ export function RoutePage() {
   return (
     <div
       className={cn(
-        "flex min-h-screen items-start justify-center px-4 py-8",
-        theme === "light" ? "bg-gray-50" : "bg-[#060609]",
+        "bg-[#191919] font-sans subpixel-antialiased",
+        "relative overflow-x-hidden overflow-y-hidden",
+        "before:fixed before:inset-x-0 before:bottom-0 before:h-[100vh] before:content-['']",
+        "before:bg-cover before:bg-[center_top] before:bg-no-repeat",
+        theme === "dark" ? "before:bg-[url(/dark-bg.svg)]" : theme === "light" ? "before:bg-[url(/light-bg.svg)]" : "",
       )}
     >
-      <div className="w-full max-w-[460px] space-y-4">
-        {/* Header */}
-        <div className="mb-2 flex items-center justify-between">
-          <h1 className="text-lg font-semibold text-white">Route Assets</h1>
-          <span className="text-[10px] uppercase tracking-wider text-white/20">powered by skip</span>
+      <main className="relative flex min-h-screen flex-col">
+        <div className="flex flex-grow flex-col items-center justify-center">
+          <div className="widget-container">
+            <img
+              src="/membrane-logo.svg"
+              alt="Membrane"
+              className="mx-auto mb-4 h-[36px]"
+            />
+
+            <div className="space-y-4">
+              <AssetSelector
+                source={source}
+                dest={dest}
+                amountIn={amountIn}
+                onSourceSelect={handleSourceSelect}
+                onDestSelect={handleDestSelect}
+                onAmountChange={setAmountIn}
+                onSwap={handleSwap}
+                estimatedOut={estimatedOut}
+                isLoadingRoute={isRouteLoading}
+              />
+
+              {routeError && (
+                <div className="rounded-lg border border-red-400/10 bg-red-400/5 px-3 py-2 text-xs text-red-300/80">
+                  {routeError.message}
+                </div>
+              )}
+
+              {route && !isExecuting && (
+                <>
+                  <RouteVisualizer
+                    route={route}
+                    disabledChains={disabledChains}
+                    onToggleChain={handleToggleChain}
+                    transferEvents={execState.step === "tracking" ? execState.transfers : undefined}
+                  />
+                  <RouteSummary route={route} />
+                </>
+              )}
+
+              {route && !isExecuting && requiredChains.length > 0 && (
+                <WalletPrompt
+                  requiredChainIds={requiredChains}
+                  addresses={addresses}
+                  onSetAddress={setAddress}
+                />
+              )}
+
+              {!isExecuting && (
+                <RouteExecutor
+                  route={route}
+                  isComplete={isComplete}
+                  isBuilding={isBuilding}
+                  isExecuting={false}
+                  onExecute={handleExecute}
+                  gasWarning={gasWarning}
+                  slippage={slippage}
+                  onSlippageChange={setSlippage}
+                />
+              )}
+
+              {isExecuting && (
+                <>
+                  {route && (
+                    <RouteVisualizer
+                      route={route}
+                      disabledChains={disabledChains}
+                      onToggleChain={() => {}}
+                      transferEvents={execState.transfers}
+                    />
+                  )}
+                  <TransactionTracker
+                    state={execState}
+                    onReset={() => {
+                      resetExec();
+                    }}
+                    onAbort={execState.step !== "completed" && execState.step !== "error" ? abortExec : undefined}
+                  />
+                </>
+              )}
+
+              {isRouteLoading && !route && (
+                <div className="flex items-center justify-center gap-2 py-6 text-sm text-white/30">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-cyan-400/40 border-t-transparent" />
+                  Finding best route...
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Asset selector */}
-        <AssetSelector
-          source={source}
-          dest={dest}
-          amountIn={amountIn}
-          onSourceSelect={handleSourceSelect}
-          onDestSelect={handleDestSelect}
-          onAmountChange={setAmountIn}
-          onSwap={handleSwap}
-          estimatedOut={estimatedOut}
-          isLoadingRoute={isRouteLoading}
-        />
-
-        {/* Route error */}
-        {routeError && (
-          <div className="rounded-lg border border-red-400/10 bg-red-400/5 px-3 py-2 text-xs text-red-300/80">
-            {routeError.message}
-          </div>
-        )}
-
-        {/* Route visualization */}
-        {route && !isExecuting && (
-          <>
-            <RouteVisualizer
-              route={route}
-              disabledChains={disabledChains}
-              onToggleChain={handleToggleChain}
-              transferEvents={execState.step === "tracking" ? execState.transfers : undefined}
-            />
-
-            <RouteSummary route={route} />
-          </>
-        )}
-
-        {/* Wallet / Recovery address prompts */}
-        {route && !isExecuting && requiredChains.length > 0 && (
-          <WalletPrompt
-            requiredChainIds={requiredChains}
-            addresses={addresses}
-            onSetAddress={setAddress}
-          />
-        )}
-
-        {/* Execution controls */}
-        {!isExecuting && (
-          <RouteExecutor
-            route={route}
-            isComplete={isComplete}
-            isBuilding={isBuilding}
-            isExecuting={false}
-            onExecute={handleExecute}
-            gasWarning={gasWarning}
-            slippage={slippage}
-            onSlippageChange={setSlippage}
-          />
-        )}
-
-        {/* Transaction tracker (during execution) */}
-        {isExecuting && (
-          <>
-            {/* Show route with live transfer status */}
-            {route && (
-              <RouteVisualizer
-                route={route}
-                disabledChains={disabledChains}
-                onToggleChain={() => {}}
-                transferEvents={execState.transfers}
-              />
-            )}
-
-            <TransactionTracker
-              state={execState}
-              onReset={() => {
-                resetExec();
-              }}
-              onAbort={execState.step !== "completed" && execState.step !== "error" ? abortExec : undefined}
-            />
-          </>
-        )}
-
-        {/* Loading indicator */}
-        {isRouteLoading && !route && (
-          <div className="flex items-center justify-center gap-2 py-6 text-sm text-white/30">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-cyan-400/40 border-t-transparent" />
-            Finding best route...
-          </div>
-        )}
-      </div>
+        <div className="hidden w-full flex-row items-center justify-center px-8 py-6 md:flex">
+          <p className={`text-center text-[13px] opacity-50 ${theme === "dark" ? "text-white" : "text-black"}`}>
+            Powered by Skip:Go
+          </p>
+        </div>
+      </main>
     </div>
   );
 }
