@@ -32,22 +32,19 @@ export async function getChains(): Promise<ChainInfo[]> {
 }
 
 export async function getAssets(chainId?: string): Promise<Record<string, AssetInfo[]>> {
-  const body: Record<string, unknown> = {
-    include_no_metadata_assets: false,
-    include_cw20_assets: true,
-    include_evm_assets: true,
-    include_svm_assets: true,
-  };
+  const params = new URLSearchParams({
+    include_no_metadata_assets: "false",
+    include_cw20_assets: "true",
+    include_evm_assets: "true",
+    include_svm_assets: "true",
+  });
   if (chainId) {
-    body.chain_id = chainId;
+    params.set("chain_id", chainId);
   }
 
   const data = await skipFetch<{
     chain_to_assets_map: Record<string, { assets: AssetInfo[] }>;
-  }>("/v2/fungible/assets", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  }>(`/v2/fungible/assets?${params}`);
 
   const result: Record<string, AssetInfo[]> = {};
   for (const [chain, val] of Object.entries(data.chain_to_assets_map)) {
