@@ -96,7 +96,7 @@ export function TransactionTracker({ state, onReset, onAbort }: TransactionTrack
                       ? "border border-red-400/10 bg-red-400/5"
                       : transfer.state === "TRANSFER_PENDING"
                         ? "border border-yellow-400/10 bg-yellow-400/5"
-                        : "border border-white/5 bg-white/[0.02]",
+                        : "border border-white/5 bg-black/60",
                 )}
               >
                 <span className="capitalize text-white/60">{srcName}</span>

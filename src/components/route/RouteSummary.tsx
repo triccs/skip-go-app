@@ -12,7 +12,7 @@ export function RouteSummary({ route }: RouteSummaryProps) {
   const priceImpact = parseFloat(route.swap_price_impact_percent ?? "0");
 
   return (
-    <div className="space-y-3 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+    <div className="space-y-3 rounded-xl bg-black/80 p-4">
       {/* Main output */}
       <div className="flex items-center justify-between">
         <span className="text-xs text-white/40">Estimated Output</span>

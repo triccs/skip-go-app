@@ -90,7 +90,7 @@ function ChainAddressRow({
   // Already has an address
   if (existing) {
     return (
-      <div className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2.5">
+      <div className="flex items-center gap-3 rounded-xl bg-black/80 px-3 py-2.5">
         {/* Chain icon */}
         <ChainIcon
           chain={chain}
@@ -138,7 +138,7 @@ function ChainAddressRow({
 
   // Needs address
   return (
-    <div className="space-y-2.5 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-3">
+    <div className="space-y-2.5 rounded-xl bg-black/80 px-3 py-3">
       <div className="flex items-center gap-3">
         <ChainIcon
           chain={chain}

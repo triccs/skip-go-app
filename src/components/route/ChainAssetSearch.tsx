@@ -69,7 +69,7 @@ export function ChainAssetSearch({ isOpen, onClose, onSelect, title }: ChainAsse
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="mx-4 w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0f] shadow-2xl">
+      <div className="mx-4 w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#141414] shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-5 pb-3 pt-5">
           <div className="flex items-center gap-2">

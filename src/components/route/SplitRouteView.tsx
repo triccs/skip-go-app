@@ -26,7 +26,7 @@ export function SplitRouteView({ operations }: SplitRouteViewProps) {
         return (
           <div
             key={idx}
-            className="space-y-2 rounded-xl border border-white/5 bg-white/[0.02] p-3"
+            className="space-y-2 rounded-xl bg-black/80 p-3"
           >
             {/* Venue info */}
             <div className="flex items-center gap-2">

@@ -65,7 +65,7 @@ export function RouteExecutor({
       </div>
 
       {showSlippage && (
-        <div className="flex gap-2 rounded-xl border border-white/5 bg-white/[0.03] p-3">
+        <div className="flex gap-2 rounded-xl bg-black/80 p-3">
           {["0.5", "1", "2", "3"].map((val) => (
             <button
               key={val}
