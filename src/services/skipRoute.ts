@@ -8,7 +8,7 @@ import type {
   TxStatusResponse,
 } from "@/types/route";
 
-const API_BASE = "/api/skip";
+const API_BASE = "https://api.skip.build";
 
 async function skipFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
